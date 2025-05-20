@@ -66,9 +66,11 @@ class Ui_MainWindow(object):
         self.editArticles = QPushButton(self.tab_4)
         self.editArticles.setObjectName(u"editArticles")
         self.editArticles.setGeometry(QRect(270, 580, 131, 31))
+        
         self.tableArticles = QTableView(self.tab_4)
         self.tableArticles.setObjectName(u"tableArticles")
         self.tableArticles.setGeometry(QRect(10, 20, 521, 481))
+
         self.tabWidget_2.addTab(self.tab_4, "")
         self.tab_5 = QWidget()
         self.tab_5.setObjectName(u"tab_5")
