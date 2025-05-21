@@ -415,7 +415,7 @@
       </rect>
      </property>
      <property name="currentIndex">
-      <number>3</number>
+      <number>0</number>
      </property>
      <widget class="QWidget" name="tab">
       <attribute name="title">
@@ -425,7 +425,7 @@
        <property name="geometry">
         <rect>
          <x>10</x>
-         <y>320</y>
+         <y>370</y>
          <width>341</width>
          <height>31</height>
         </rect>
@@ -440,7 +440,7 @@
          <x>0</x>
          <y>10</y>
          <width>361</width>
-         <height>308</height>
+         <height>339</height>
         </rect>
        </property>
        <layout class="QGridLayout" name="gridLayout_3">
@@ -459,53 +459,6 @@
         <property name="spacing">
          <number>10</number>
         </property>
-        <item row="7" column="2" colspan="3">
-         <widget class="QTextEdit" name="abstract_2"/>
-        </item>
-        <item row="0" column="2" colspan="3">
-         <widget class="QLineEdit" name="nameArticle"/>
-        </item>
-        <item row="6" column="0" colspan="2">
-         <widget class="QLabel" name="label_7">
-          <property name="text">
-           <string>Количество страниц</string>
-          </property>
-         </widget>
-        </item>
-        <item row="2" column="2" colspan="3">
-         <widget class="QComboBox" name="ArticlesJournal"/>
-        </item>
-        <item row="0" column="0" colspan="2">
-         <widget class="QLabel" name="label_2">
-          <property name="text">
-           <string>* Название</string>
-          </property>
-         </widget>
-        </item>
-        <item row="3" column="0" colspan="2">
-         <widget class="QLabel" name="label_4">
-          <property name="text">
-           <string>Дата публикации</string>
-          </property>
-         </widget>
-        </item>
-        <item row="7" column="0" colspan="2">
-         <widget class="QLabel" name="label_8">
-          <property name="text">
-           <string>Оглавление</string>
-          </property>
-         </widget>
-        </item>
-        <item row="5" column="0" colspan="2">
-         <widget class="QLabel" name="label_6">
-          <property name="text">
-           <string>Тема</string>
-          </property>
-         </widget>
-        </item>
-        <item row="4" column="2" colspan="3">
-         <widget class="QLineEdit" name="volume"/>
-        </item>
         <item row="5" column="2" colspan="3">
          <widget class="QComboBox" name="topicArticles"/>
         </item>
@@ -516,6 +469,9 @@
           </property>
          </widget>
         </item>
+        <item row="4" column="2" colspan="3">
+         <widget class="QLineEdit" name="volume"/>
+        </item>
         <item row="4" column="0">
          <widget class="QLabel" name="label_5">
           <property name="text">
@@ -523,16 +479,57 @@
           </property>
          </widget>
         </item>
+        <item row="3" column="0" colspan="2">
+         <widget class="QLabel" name="label_4">
+          <property name="text">
+           <string>Дата публикации</string>
+          </property>
+         </widget>
+        </item>
+        <item row="1" column="2" colspan="3">
+         <widget class="QComboBox" name="articlesAuthor"/>
+        </item>
+        <item row="7" column="0" colspan="2">
+         <widget class="QLabel" name="label_8">
+          <property name="text">
+           <string>Оглавление</string>
+          </property>
+         </widget>
+        </item>
+        <item row="6" column="2" colspan="3">
+         <widget class="QLineEdit" name="pagesArticles"/>
+        </item>
+        <item row="6" column="0" colspan="2">
+         <widget class="QLabel" name="label_7">
+          <property name="text">
+           <string>Количество страниц</string>
+          </property>
+         </widget>
+        </item>
+        <item row="0" column="0" colspan="2">
+         <widget class="QLabel" name="label_2">
+          <property name="text">
+           <string>* Название</string>
+          </property>
+         </widget>
+        </item>
+        <item row="1" column="0">
+         <widget class="QLabel" name="label_23">
+          <property name="text">
+           <string>Автор</string>
+          </property>
+         </widget>
+        </item>
         <item row="3" column="2" colspan="3">
          <widget class="QDateEdit" name="dataArticles">
           <property name="maximumDateTime">
            <datetime>
-            <hour>2</hour>
+            <hour>16</hour>
             <minute>59</minute>
             <second>59</second>
             <year>9999</year>
             <month>12</month>
-            <day>29</day>
+            <day>28</day>
            </datetime>
           </property>
           <property name="date">
@@ -544,18 +541,31 @@
           </property>
          </widget>
         </item>
-        <item row="6" column="2" colspan="3">
-         <widget class="QLineEdit" name="pagesArticles"/>
+        <item row="2" column="2" colspan="3">
+         <widget class="QComboBox" name="ArticlesJournal"/>
         </item>
-        <item row="1" column="0">
-         <widget class="QLabel" name="label_23">
+        <item row="7" column="2" colspan="3">
+         <widget class="QTextEdit" name="abstract_2"/>
+        </item>
+        <item row="5" column="0" colspan="2">
+         <widget class="QLabel" name="label_6">
           <property name="text">
-           <string>Автор</string>
+           <string>Тема</string>
           </property>
          </widget>
         </item>
-        <item row="1" column="2" colspan="3">
-         <widget class="QComboBox" name="articlesAuthor"/>
+        <item row="0" column="2" colspan="3">
+         <widget class="QLineEdit" name="nameArticle"/>
+        </item>
+        <item row="8" column="2" colspan="3">
+         <widget class="QLineEdit" name="lineEdit"/>
+        </item>
+        <item row="8" column="0" colspan="2">
+         <widget class="QLabel" name="label_24">
+          <property name="text">
+           <string>Ссылка</string>
+          </property>
+         </widget>
         </item>
        </layout>
       </widget>
@@ -568,7 +578,7 @@
        <property name="geometry">
         <rect>
          <x>10</x>
-         <y>200</y>
+         <y>220</y>
          <width>341</width>
          <height>31</height>
         </rect>
@@ -643,7 +653,7 @@
          <widget class="QDateEdit" name="dataJournal">
           <property name="maximumDateTime">
            <datetime>
-            <hour>21</hour>
+            <hour>11</hour>
             <minute>59</minute>
             <second>59</second>
             <year>9999</year>
@@ -681,7 +691,7 @@
        <property name="geometry">
         <rect>
          <x>10</x>
-         <y>130</y>
+         <y>140</y>
          <width>341</width>
          <height>31</height>
         </rect>
@@ -756,7 +766,7 @@
        <property name="geometry">
         <rect>
          <x>10</x>
-         <y>150</y>
+         <y>180</y>
          <width>341</width>
          <height>31</height>
         </rect>
@@ -771,7 +781,7 @@
          <x>0</x>
          <y>10</y>
          <width>351</width>
-         <height>141</height>
+         <height>151</height>
         </rect>
        </property>
        <layout class="QGridLayout" name="gridLayout" rowstretch="0,0,0">
@@ -835,7 +845,7 @@
      <x>0</x>
      <y>0</y>
      <width>1004</width>
-     <height>33</height>
+     <height>22</height>
     </rect>
    </property>
   </widget>

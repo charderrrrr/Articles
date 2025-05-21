@@ -5,6 +5,7 @@ class DatabaseHandler:
         self.connect = sql.connect(db_name)
         self.cursor = self.connect.cursor()
         self.init_db()
+
     def close(self):
         self.connect.close()
 
@@ -79,3 +80,105 @@ class DatabaseHandler:
 
         self.connect.commit()
         return True
+    
+    def addRecord(self, name_table, data):
+        if len(data) != 0:
+            if name_table == "authors":
+                self.cursor.execute("""
+                INSERT INTO authors(full_name, affiliation, email)
+                VALUES (?, ?, ?);
+            """, tuple(data))
+
+            if name_table == "journals":
+                self.cursor.execute("""
+                INSERT INTO journals(journal_name, issn, publisher, founding_year, frequency)
+                VALUES (?, ?, ?, ?, ?);
+            """, tuple(data))
+
+            if name_table == "topics":
+                self.cursor.execute("""
+                INSERT INTO topics(topic_name, parent_topic_id, description)
+                VALUES (?, ?, ?);
+            """, tuple(data))
+
+            if name_table == "articles":
+                self.cursor.execute("""
+                INSERT INTO articles(title, journal_id, publication_date, volume, issue, pages, abstract, link)
+                VALUES (?, ?, ?, ?, ?, ?, ?, ?);
+            """, tuple(data))
+
+            return self.connect.commit()
+        
+    def load_data(self, name_table):
+        if name_table == "authors":
+            self.cursor.execute("""
+            SELECT full_name, affiliation, email FROM authors
+            """)
+            return self.cursor.fetchall()
+
+        if name_table == "journals":
+            self.cursor.execute("""
+            SELECT journal_name, issn, publisher, founding_year, frequency FROM journals
+        """)
+            return self.cursor.fetchall()
+
+        if name_table == "topics":
+            self.cursor.execute("""
+            SELECT topic_name, parent_topic_id, description FROM topics
+        """)
+            return self.cursor.fetchall()
+
+        if name_table == "articles":
+            self.cursor.execute("""
+            SELECT title, journal_id, publication_date, volume, issue, pages, abstract FROM articles
+        """)
+            return self.cursor.fetchall()
+        
+    def load_headers(self, name_table):   
+        if name_table == "authors":
+            self.cursor.execute("PRAGMA table_info(authors)")
+            columns_dict = {idx: column[1] for idx, column in enumerate(self.cursor.fetchall())}
+            return columns_dict
+
+        if name_table == "journals":
+            self.cursor.execute("PRAGMA table_info(journals)")
+            columns_dict = {idx: column[1] for idx, column in enumerate(self.cursor.fetchall())}
+            return columns_dict
+
+        if name_table == "topics":
+            self.cursor.execute("PRAGMA table_info(journals)")
+            columns_dict = {idx: column[1] for idx, column in enumerate(self.cursor.fetchall())}
+            return columns_dict
+
+        if name_table == "articles":
+            self.cursor.execute("PRAGMA table_info(journals)")
+            columns_dict = {idx: column[1] for idx, column in enumerate(self.cursor.fetchall())}
+            return columns_dict
+        
+    def delRecord(self, name_table, data):
+        if len(data) != 0:
+            if name_table == "authors":
+                self.cursor.execute("""
+                INSERT INTO authors(full_name, affiliation, email)
+                VALUES (?, ?, ?);
+            """, tuple(data))
+
+            if name_table == "journals":
+                self.cursor.execute("""
+                INSERT INTO journals(journal_name, issn, publisher, founding_year, frequency)
+                VALUES (?, ?, ?, ?, ?);
+            """, tuple(data))
+
+            if name_table == "topics":
+                self.cursor.execute("""
+                INSERT INTO topics(topic_name, parent_topic_id, description)
+                VALUES (?, ?, ?);
+            """, tuple(data))
+
+            if name_table == "articles":
+                self.cursor.execute("""
+                INSERT INTO articles(title, journal_id, publication_date, volume, issue, pages, abstract, link)
+                VALUES (?, ?, ?, ?, ?, ?, ?, ?);
+            """, tuple(data))
+
+            return self.connect.commit()

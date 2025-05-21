@@ -3,7 +3,7 @@
 ################################################################################
 ## Form generated from reading UI file 'Articles.ui'
 ##
-## Created by: Qt User Interface Compiler version 6.9.0
+## Created by: Qt User Interface Compiler version 6.8.1
 ##
 ## WARNING! All changes made in this file will be lost when recompiling UI file!
 ################################################################################
@@ -66,11 +66,9 @@ class Ui_MainWindow(object):
         self.editArticles = QPushButton(self.tab_4)
         self.editArticles.setObjectName(u"editArticles")
         self.editArticles.setGeometry(QRect(270, 580, 131, 31))
-        
         self.tableArticles = QTableView(self.tab_4)
         self.tableArticles.setObjectName(u"tableArticles")
         self.tableArticles.setGeometry(QRect(10, 20, 521, 481))
-
         self.tabWidget_2.addTab(self.tab_4, "")
         self.tab_5 = QWidget()
         self.tab_5.setObjectName(u"tab_5")
@@ -179,59 +177,14 @@ class Ui_MainWindow(object):
         self.tab.setObjectName(u"tab")
         self.addArticles = QPushButton(self.tab)
         self.addArticles.setObjectName(u"addArticles")
-        self.addArticles.setGeometry(QRect(10, 320, 341, 31))
+        self.addArticles.setGeometry(QRect(10, 370, 341, 31))
         self.layoutWidget = QWidget(self.tab)
         self.layoutWidget.setObjectName(u"layoutWidget")
-        self.layoutWidget.setGeometry(QRect(0, 10, 361, 308))
+        self.layoutWidget.setGeometry(QRect(0, 10, 361, 339))
         self.gridLayout_3 = QGridLayout(self.layoutWidget)
         self.gridLayout_3.setSpacing(10)
         self.gridLayout_3.setObjectName(u"gridLayout_3")
         self.gridLayout_3.setContentsMargins(10, 10, 10, 10)
-        self.abstract_2 = QTextEdit(self.layoutWidget)
-        self.abstract_2.setObjectName(u"abstract_2")
-
-        self.gridLayout_3.addWidget(self.abstract_2, 7, 2, 1, 3)
-
-        self.nameArticle = QLineEdit(self.layoutWidget)
-        self.nameArticle.setObjectName(u"nameArticle")
-
-        self.gridLayout_3.addWidget(self.nameArticle, 0, 2, 1, 3)
-
-        self.label_7 = QLabel(self.layoutWidget)
-        self.label_7.setObjectName(u"label_7")
-
-        self.gridLayout_3.addWidget(self.label_7, 6, 0, 1, 2)
-
-        self.ArticlesJournal = QComboBox(self.layoutWidget)
-        self.ArticlesJournal.setObjectName(u"ArticlesJournal")
-
-        self.gridLayout_3.addWidget(self.ArticlesJournal, 2, 2, 1, 3)
-
-        self.label_2 = QLabel(self.layoutWidget)
-        self.label_2.setObjectName(u"label_2")
-
-        self.gridLayout_3.addWidget(self.label_2, 0, 0, 1, 2)
-
-        self.label_4 = QLabel(self.layoutWidget)
-        self.label_4.setObjectName(u"label_4")
-
-        self.gridLayout_3.addWidget(self.label_4, 3, 0, 1, 2)
-
-        self.label_8 = QLabel(self.layoutWidget)
-        self.label_8.setObjectName(u"label_8")
-
-        self.gridLayout_3.addWidget(self.label_8, 7, 0, 1, 2)
-
-        self.label_6 = QLabel(self.layoutWidget)
-        self.label_6.setObjectName(u"label_6")
-
-        self.gridLayout_3.addWidget(self.label_6, 5, 0, 1, 2)
-
-        self.volume = QLineEdit(self.layoutWidget)
-        self.volume.setObjectName(u"volume")
-
-        self.gridLayout_3.addWidget(self.volume, 4, 2, 1, 3)
-
         self.topicArticles = QComboBox(self.layoutWidget)
         self.topicArticles.setObjectName(u"topicArticles")
 
@@ -242,39 +195,94 @@ class Ui_MainWindow(object):
 
         self.gridLayout_3.addWidget(self.label_3, 2, 0, 1, 2)
 
+        self.volume = QLineEdit(self.layoutWidget)
+        self.volume.setObjectName(u"volume")
+
+        self.gridLayout_3.addWidget(self.volume, 4, 2, 1, 3)
+
         self.label_5 = QLabel(self.layoutWidget)
         self.label_5.setObjectName(u"label_5")
 
         self.gridLayout_3.addWidget(self.label_5, 4, 0, 1, 1)
 
-        self.dataArticles = QDateEdit(self.layoutWidget)
-        self.dataArticles.setObjectName(u"dataArticles")
-        self.dataArticles.setMaximumDateTime(QDateTime(QDate(9999, 12, 29), QTime(2, 59, 59)))
-        self.dataArticles.setDate(QDate(2025, 6, 17))
+        self.label_4 = QLabel(self.layoutWidget)
+        self.label_4.setObjectName(u"label_4")
 
-        self.gridLayout_3.addWidget(self.dataArticles, 3, 2, 1, 3)
-
-        self.pagesArticles = QLineEdit(self.layoutWidget)
-        self.pagesArticles.setObjectName(u"pagesArticles")
-
-        self.gridLayout_3.addWidget(self.pagesArticles, 6, 2, 1, 3)
-
-        self.label_23 = QLabel(self.layoutWidget)
-        self.label_23.setObjectName(u"label_23")
-
-        self.gridLayout_3.addWidget(self.label_23, 1, 0, 1, 1)
+        self.gridLayout_3.addWidget(self.label_4, 3, 0, 1, 2)
 
         self.articlesAuthor = QComboBox(self.layoutWidget)
         self.articlesAuthor.setObjectName(u"articlesAuthor")
 
         self.gridLayout_3.addWidget(self.articlesAuthor, 1, 2, 1, 3)
 
+        self.label_8 = QLabel(self.layoutWidget)
+        self.label_8.setObjectName(u"label_8")
+
+        self.gridLayout_3.addWidget(self.label_8, 7, 0, 1, 2)
+
+        self.pagesArticles = QLineEdit(self.layoutWidget)
+        self.pagesArticles.setObjectName(u"pagesArticles")
+
+        self.gridLayout_3.addWidget(self.pagesArticles, 6, 2, 1, 3)
+
+        self.label_7 = QLabel(self.layoutWidget)
+        self.label_7.setObjectName(u"label_7")
+
+        self.gridLayout_3.addWidget(self.label_7, 6, 0, 1, 2)
+
+        self.label_2 = QLabel(self.layoutWidget)
+        self.label_2.setObjectName(u"label_2")
+
+        self.gridLayout_3.addWidget(self.label_2, 0, 0, 1, 2)
+
+        self.label_23 = QLabel(self.layoutWidget)
+        self.label_23.setObjectName(u"label_23")
+
+        self.gridLayout_3.addWidget(self.label_23, 1, 0, 1, 1)
+
+        self.dataArticles = QDateEdit(self.layoutWidget)
+        self.dataArticles.setObjectName(u"dataArticles")
+        self.dataArticles.setMaximumDateTime(QDateTime(QDate(9999, 12, 28), QTime(16, 59, 59)))
+        self.dataArticles.setDate(QDate(2025, 6, 17))
+
+        self.gridLayout_3.addWidget(self.dataArticles, 3, 2, 1, 3)
+
+        self.ArticlesJournal = QComboBox(self.layoutWidget)
+        self.ArticlesJournal.setObjectName(u"ArticlesJournal")
+
+        self.gridLayout_3.addWidget(self.ArticlesJournal, 2, 2, 1, 3)
+
+        self.abstract_2 = QTextEdit(self.layoutWidget)
+        self.abstract_2.setObjectName(u"abstract_2")
+
+        self.gridLayout_3.addWidget(self.abstract_2, 7, 2, 1, 3)
+
+        self.label_6 = QLabel(self.layoutWidget)
+        self.label_6.setObjectName(u"label_6")
+
+        self.gridLayout_3.addWidget(self.label_6, 5, 0, 1, 2)
+
+        self.nameArticle = QLineEdit(self.layoutWidget)
+        self.nameArticle.setObjectName(u"nameArticle")
+
+        self.gridLayout_3.addWidget(self.nameArticle, 0, 2, 1, 3)
+
+        self.lineEdit = QLineEdit(self.layoutWidget)
+        self.lineEdit.setObjectName(u"lineEdit")
+
+        self.gridLayout_3.addWidget(self.lineEdit, 8, 2, 1, 3)
+
+        self.label_24 = QLabel(self.layoutWidget)
+        self.label_24.setObjectName(u"label_24")
+
+        self.gridLayout_3.addWidget(self.label_24, 8, 0, 1, 2)
+
         self.tabWidget.addTab(self.tab, "")
         self.tab_2 = QWidget()
         self.tab_2.setObjectName(u"tab_2")
         self.addJournal = QPushButton(self.tab_2)
         self.addJournal.setObjectName(u"addJournal")
-        self.addJournal.setGeometry(QRect(10, 200, 341, 31))
+        self.addJournal.setGeometry(QRect(10, 220, 341, 31))
         self.layoutWidget1 = QWidget(self.tab_2)
         self.layoutWidget1.setObjectName(u"layoutWidget1")
         self.layoutWidget1.setGeometry(QRect(0, 10, 361, 191))
@@ -319,7 +327,7 @@ class Ui_MainWindow(object):
 
         self.dataJournal = QDateEdit(self.layoutWidget1)
         self.dataJournal.setObjectName(u"dataJournal")
-        self.dataJournal.setMaximumDateTime(QDateTime(QDate(9999, 12, 28), QTime(21, 59, 59)))
+        self.dataJournal.setMaximumDateTime(QDateTime(QDate(9999, 12, 28), QTime(11, 59, 59)))
         self.dataJournal.setDate(QDate(2025, 6, 17))
 
         self.gridLayout_2.addWidget(self.dataJournal, 3, 1, 1, 4)
@@ -339,7 +347,7 @@ class Ui_MainWindow(object):
         self.tab_8.setObjectName(u"tab_8")
         self.addJournal_2 = QPushButton(self.tab_8)
         self.addJournal_2.setObjectName(u"addJournal_2")
-        self.addJournal_2.setGeometry(QRect(10, 130, 341, 31))
+        self.addJournal_2.setGeometry(QRect(10, 140, 341, 31))
         self.layoutWidget2 = QWidget(self.tab_8)
         self.layoutWidget2.setObjectName(u"layoutWidget2")
         self.layoutWidget2.setGeometry(QRect(10, 10, 351, 111))
@@ -382,10 +390,10 @@ class Ui_MainWindow(object):
         self.tab_3.setObjectName(u"tab_3")
         self.addTopic = QPushButton(self.tab_3)
         self.addTopic.setObjectName(u"addTopic")
-        self.addTopic.setGeometry(QRect(10, 150, 341, 31))
+        self.addTopic.setGeometry(QRect(10, 180, 341, 31))
         self.layoutWidget3 = QWidget(self.tab_3)
         self.layoutWidget3.setObjectName(u"layoutWidget3")
-        self.layoutWidget3.setGeometry(QRect(0, 10, 351, 141))
+        self.layoutWidget3.setGeometry(QRect(0, 10, 351, 151))
         self.gridLayout = QGridLayout(self.layoutWidget3)
         self.gridLayout.setSpacing(10)
         self.gridLayout.setObjectName(u"gridLayout")
@@ -425,13 +433,13 @@ class Ui_MainWindow(object):
         MainWindow.setCentralWidget(self.centralwidget)
         self.menubar = QMenuBar(MainWindow)
         self.menubar.setObjectName(u"menubar")
-        self.menubar.setGeometry(QRect(0, 0, 1004, 33))
+        self.menubar.setGeometry(QRect(0, 0, 1004, 22))
         MainWindow.setMenuBar(self.menubar)
 
         self.retranslateUi(MainWindow)
 
         self.tabWidget_2.setCurrentIndex(1)
-        self.tabWidget.setCurrentIndex(3)
+        self.tabWidget.setCurrentIndex(0)
 
 
         QMetaObject.connectSlotsByName(MainWindow)
@@ -479,14 +487,15 @@ class Ui_MainWindow(object):
         self.tabWidget_2.setTabText(self.tabWidget_2.indexOf(self.tab_6), QCoreApplication.translate("MainWindow", u"\u0422\u0435\u043c\u044b", None))
         self.groupBox_3.setTitle(QCoreApplication.translate("MainWindow", u"\u0420\u0435\u0434\u0430\u043a\u0442\u0438\u0440\u043e\u0432\u0430\u043d\u0438\u0435", None))
         self.addArticles.setText(QCoreApplication.translate("MainWindow", u"\u0414\u043e\u0431\u0430\u0432\u0438\u0442\u044c \u0441\u0442\u0430\u0442\u044c\u044e", None))
-        self.label_7.setText(QCoreApplication.translate("MainWindow", u"\u041a\u043e\u043b\u0438\u0447\u0435\u0441\u0442\u0432\u043e \u0441\u0442\u0440\u0430\u043d\u0438\u0446", None))
-        self.label_2.setText(QCoreApplication.translate("MainWindow", u"* \u041d\u0430\u0437\u0432\u0430\u043d\u0438\u0435", None))
-        self.label_4.setText(QCoreApplication.translate("MainWindow", u"\u0414\u0430\u0442\u0430 \u043f\u0443\u0431\u043b\u0438\u043a\u0430\u0446\u0438\u0438", None))
-        self.label_8.setText(QCoreApplication.translate("MainWindow", u"\u041e\u0433\u043b\u0430\u0432\u043b\u0435\u043d\u0438\u0435", None))
-        self.label_6.setText(QCoreApplication.translate("MainWindow", u"\u0422\u0435\u043c\u0430", None))
         self.label_3.setText(QCoreApplication.translate("MainWindow", u"\u0416\u0443\u0440\u043d\u0430\u043b", None))
         self.label_5.setText(QCoreApplication.translate("MainWindow", u"\u0422\u043e\u043c", None))
+        self.label_4.setText(QCoreApplication.translate("MainWindow", u"\u0414\u0430\u0442\u0430 \u043f\u0443\u0431\u043b\u0438\u043a\u0430\u0446\u0438\u0438", None))
+        self.label_8.setText(QCoreApplication.translate("MainWindow", u"\u041e\u0433\u043b\u0430\u0432\u043b\u0435\u043d\u0438\u0435", None))
+        self.label_7.setText(QCoreApplication.translate("MainWindow", u"\u041a\u043e\u043b\u0438\u0447\u0435\u0441\u0442\u0432\u043e \u0441\u0442\u0440\u0430\u043d\u0438\u0446", None))
+        self.label_2.setText(QCoreApplication.translate("MainWindow", u"* \u041d\u0430\u0437\u0432\u0430\u043d\u0438\u0435", None))
         self.label_23.setText(QCoreApplication.translate("MainWindow", u"\u0410\u0432\u0442\u043e\u0440", None))
+        self.label_6.setText(QCoreApplication.translate("MainWindow", u"\u0422\u0435\u043c\u0430", None))
+        self.label_24.setText(QCoreApplication.translate("MainWindow", u"\u0421\u0441\u044b\u043b\u043a\u0430", None))
         self.tabWidget.setTabText(self.tabWidget.indexOf(self.tab), QCoreApplication.translate("MainWindow", u"\u0421\u0442\u0430\u0442\u044c\u044f", None))
         self.addJournal.setText(QCoreApplication.translate("MainWindow", u"\u0414\u043e\u0431\u0430\u0432\u0438\u0442\u044c \u0436\u0443\u0440\u043d\u0430\u043b", None))
         self.label_12.setText(QCoreApplication.translate("MainWindow", u"* \u041d\u0430\u0437\u0432\u0430\u043d\u0438\u0435", None))
