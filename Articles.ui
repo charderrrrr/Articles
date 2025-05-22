@@ -36,7 +36,7 @@
       </rect>
      </property>
      <property name="currentIndex">
-      <number>1</number>
+      <number>0</number>
      </property>
      <widget class="QWidget" name="tab_4">
       <attribute name="title">
@@ -524,7 +524,7 @@
          <widget class="QDateEdit" name="dataArticles">
           <property name="maximumDateTime">
            <datetime>
-            <hour>16</hour>
+            <hour>11</hour>
             <minute>59</minute>
             <second>59</second>
             <year>9999</year>
@@ -645,7 +645,7 @@
         <item row="3" column="0">
          <widget class="QLabel" name="label_15">
           <property name="text">
-           <string>Дата публикации</string>
+           <string>Дата основания</string>
           </property>
          </widget>
         </item>
@@ -653,7 +653,7 @@
          <widget class="QDateEdit" name="dataJournal">
           <property name="maximumDateTime">
            <datetime>
-            <hour>11</hour>
+            <hour>6</hour>
             <minute>59</minute>
             <second>59</second>
             <year>9999</year>
@@ -781,7 +781,7 @@
          <x>0</x>
          <y>10</y>
          <width>351</width>
-         <height>151</height>
+         <height>153</height>
         </rect>
        </property>
        <layout class="QGridLayout" name="gridLayout" rowstretch="0,0,0">

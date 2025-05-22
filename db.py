@@ -47,34 +47,13 @@ class DatabaseHandler:
             CREATE TABLE IF NOT EXISTS articles (
             article_id INTEGER PRIMARY KEY AUTOINCREMENT,
             title VARCHAR(200) NOT NULL,
-            journal_id INTEGER NOT NULL,
+            author_id TEXT,
+            journal_id TEXT,
             publication_date DATE,
             volume VARCHAR(20),
             issue VARCHAR(20),
             pages VARCHAR(20),
-            abstract TEXT,
-            FOREIGN KEY (journal_id) REFERENCES journals(journal_id)
-            );
-        """)
-
-        self.cursor.execute("""
-            CREATE TABLE IF NOT EXISTS article_authors (
-            article_id INTEGER NOT NULL,
-            author_id INTEGER NOT NULL,
-            author_order INTEGER NOT NULL,
-            PRIMARY KEY (article_id, author_id),
-            FOREIGN KEY (article_id) REFERENCES articles(article_id),
-            FOREIGN KEY (author_id) REFERENCES authors(author_id)
-            );
-        """)
-
-        self.cursor.execute("""
-            CREATE TABLE IF NOT EXISTS article_topics (
-            article_id INTEGER NOT NULL,
-            topic_id INTEGER NOT NULL,
-            PRIMARY KEY (article_id, topic_id),
-            FOREIGN KEY (article_id) REFERENCES articles(article_id),
-            FOREIGN KEY (topic_id) REFERENCES topics(topic_id)
+            abstract TEXT
             );
         """)
 
@@ -103,8 +82,8 @@ class DatabaseHandler:
 
             if name_table == "articles":
                 self.cursor.execute("""
-                INSERT INTO articles(title, journal_id, publication_date, volume, issue, pages, abstract, link)
-                VALUES (?, ?, ?, ?, ?, ?, ?, ?);
+                INSERT INTO articles(title, author_id, journal_id, publication_date, volume, issue, pages, abstract, link)
+                VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?);
             """, tuple(data))
 
             return self.connect.commit()
@@ -112,25 +91,25 @@ class DatabaseHandler:
     def load_data(self, name_table):
         if name_table == "authors":
             self.cursor.execute("""
-            SELECT full_name, affiliation, email FROM authors
+            SELECT * FROM authors
             """)
             return self.cursor.fetchall()
 
         if name_table == "journals":
             self.cursor.execute("""
-            SELECT journal_name, issn, publisher, founding_year, frequency FROM journals
+            SELECT * FROM journals
         """)
             return self.cursor.fetchall()
 
         if name_table == "topics":
             self.cursor.execute("""
-            SELECT topic_name, parent_topic_id, description FROM topics
+            SELECT * FROM topics
         """)
             return self.cursor.fetchall()
 
         if name_table == "articles":
             self.cursor.execute("""
-            SELECT title, journal_id, publication_date, volume, issue, pages, abstract FROM articles
+            SELECT * FROM articles
         """)
             return self.cursor.fetchall()
         
@@ -155,30 +134,44 @@ class DatabaseHandler:
             columns_dict = {idx: column[1] for idx, column in enumerate(self.cursor.fetchall())}
             return columns_dict
         
-    def delRecord(self, name_table, data):
-        if len(data) != 0:
-            if name_table == "authors":
+    def delRecord(self, name_table, id):
+        if len(id) != 0:
+            if name_table == "Авторы":
                 self.cursor.execute("""
-                INSERT INTO authors(full_name, affiliation, email)
-                VALUES (?, ?, ?);
-            """, tuple(data))
+                DELETE FROM authors WHERE author_id=?
+            """, tuple(id))
 
-            if name_table == "journals":
+            if name_table == "Журналы":
                 self.cursor.execute("""
-                INSERT INTO journals(journal_name, issn, publisher, founding_year, frequency)
-                VALUES (?, ?, ?, ?, ?);
-            """, tuple(data))
+                DELETE FROM journals WHERE journal_id=?
+            """, tuple(id))
 
-            if name_table == "topics":
+            if name_table == "Темы":
                 self.cursor.execute("""
-                INSERT INTO topics(topic_name, parent_topic_id, description)
-                VALUES (?, ?, ?);
-            """, tuple(data))
+                DELETE FROM topics WHERE topic_id=?
+            """, tuple(id))
 
-            if name_table == "articles":
+            if name_table == "Статьи":
                 self.cursor.execute("""
-                INSERT INTO articles(title, journal_id, publication_date, volume, issue, pages, abstract, link)
-                VALUES (?, ?, ?, ?, ?, ?, ?, ?);
-            """, tuple(data))
+                DELETE FROM articles WHERE article_id=?
+            """, tuple(id))
 
             return self.connect.commit()
+
+    def getAuthors(self):
+        self.cursor.execute(""" 
+        SELECT full_name FROM authors
+        """)
+        return self.cursor.fetchall()
+    
+    def getJournals(self):
+        self.cursor.execute(""" 
+        SELECT journal_name FROM journals
+        """)
+        return self.cursor.fetchall()
+    
+    def getTopic(self):
+        self.cursor.execute(""" 
+        SELECT topic_name FROM topics
+        """)
+        return self.cursor.fetchall()
