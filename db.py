@@ -14,22 +14,20 @@ class DatabaseHandler:
         self.cursor.execute("""
             CREATE TABLE IF NOT EXISTS authors (
             author_id INTEGER PRIMARY KEY AUTOINCREMENT,
-            full_name TEXT NOT NULL,
+            full_name TEXT NOT NULL UNIQUE,
             affiliation VARCHAR(100),
-            email VARCHAR(100),
-            UNIQUE (full_name)
+            email VARCHAR(100)
             );
         """)
 
         self.cursor.execute("""
             CREATE TABLE IF NOT EXISTS journals (
             journal_id INTEGER PRIMARY KEY AUTOINCREMENT,
-            journal_name TEXT NOT NULL,
-            issn VARCHAR(9),
+            journal_name TEXT NOT NULL UNIQUE,
+            issn VARCHAR(9) UNIQUE,
             publisher TEXT,
             founding_year INTEGER,
-            frequency VARCHAR(30),
-            UNIQUE (journal_name, issn)
+            frequency VARCHAR(30)
             );
         """)
 
@@ -37,9 +35,8 @@ class DatabaseHandler:
             CREATE TABLE IF NOT EXISTS topics (
             topic_id INTEGER PRIMARY KEY AUTOINCREMENT,
             topic_name VARCHAR(100) NOT NULL UNIQUE,
-            parent_topic_id INTEGER,
-            description TEXT,
-            FOREIGN KEY (parent_topic_id) REFERENCES topics(topic_id)
+            parent_topic VARCHAR(100),
+            description TEXT
             );
         """)
 
@@ -52,8 +49,9 @@ class DatabaseHandler:
             publication_date DATE,
             volume VARCHAR(20),
             issue VARCHAR(20),
-            pages VARCHAR(20),
-            abstract TEXT
+            pages INTEGER,
+            abstract TEXT,
+            link TEXT
             );
         """)
 
@@ -76,7 +74,7 @@ class DatabaseHandler:
 
             if name_table == "topics":
                 self.cursor.execute("""
-                INSERT INTO topics(topic_name, parent_topic_id, description)
+                INSERT INTO topics(topic_name, parent_topic, description)
                 VALUES (?, ?, ?);
             """, tuple(data))
 
@@ -125,12 +123,12 @@ class DatabaseHandler:
             return columns_dict
 
         if name_table == "topics":
-            self.cursor.execute("PRAGMA table_info(journals)")
+            self.cursor.execute("PRAGMA table_info(topics)")
             columns_dict = {idx: column[1] for idx, column in enumerate(self.cursor.fetchall())}
             return columns_dict
 
         if name_table == "articles":
-            self.cursor.execute("PRAGMA table_info(journals)")
+            self.cursor.execute("PRAGMA table_info(articles)")
             columns_dict = {idx: column[1] for idx, column in enumerate(self.cursor.fetchall())}
             return columns_dict
         

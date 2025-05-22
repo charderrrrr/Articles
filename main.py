@@ -84,6 +84,7 @@ class MainWindow(QMainWindow):
         self.ui.delArticles_2.clicked.connect(self.del_record)
         self.ui.delAuthors.clicked.connect(self.del_record)
         self.ui.delTopic.clicked.connect(self.del_record)
+        self.ui.delArticles.clicked.connect(self.del_record)
 
     def loadData(self):
         current_text = self.ui.tabWidget_2.tabText(self.ui.tabWidget_2.currentIndex())
@@ -117,7 +118,7 @@ class MainWindow(QMainWindow):
             self.ui.tableTopics.setColumnHidden(0, True)
 
     def add_articles(self):
-        tableName = "acticles"
+        tableName = "articles"
         name = self.ui.nameArticle.text().strip()
         author = self.ui.articlesAuthor.currentText()
         journal = self.ui.ArticlesJournal.currentText()
@@ -127,15 +128,12 @@ class MainWindow(QMainWindow):
         pages = self.ui.pagesArticles.text()
         abstract = self.ui.abstract_2.toPlainText()
         link = self.ui.lineEdit.text().strip()
-        if name and author and journal and date and volume and theme and pages and abstract and link:
+        if name and date and volume and pages and abstract and link:
             try:
                 self.db_handler.addRecord(tableName, (name, author, journal, date, volume, theme, pages, abstract, link))
                 self.ui.nameArticle.clear()
-                self.ui.articlesAuthor.clear()
-                self.ui.ArticlesJournal.clear()
                 self.ui.dataArticles.clear()
                 self.ui.volume.clear()
-                self.ui.topicArticles.clear()
                 self.ui.pagesArticles.clear()
                 self.ui.abstract_2.clear()
                 self.ui.lineEdit.clear()
@@ -187,19 +185,19 @@ class MainWindow(QMainWindow):
     def add_topics(self):
         tableName = "topics"
         name = self.ui.nameTopic.text().strip()
-        childeName = self.ui.childeTopic.text().strip()
+        childeName = self.ui.comboBox.currentText().strip()
         description = self.ui.descriptionTopic.toPlainText().strip()
-        if name and childeName and description:
-            if childeName:
-                try:
-                    self.db_handler.addRecord(tableName, (name, childeName, description))
-                    self.ui.nameTopic.clear()
-                    self.ui.childeTopic.clear()
-                    self.ui.descriptionTopic.clear()
-                    self.loadData()     
-                    self.load_topics()               
-                except Exception as e:
-                    print(f"Ошибка: {e}")
+        if name and description:
+            if not childeName:
+                childeName = " "
+            try:
+                self.db_handler.addRecord(tableName, (name, childeName, description))
+                self.ui.nameTopic.clear()
+                self.ui.descriptionTopic.clear()
+                self.loadData()     
+                self.load_topics()               
+            except Exception as e:
+                print(f"Ошибка: {e}")
 
         else:
             QMessageBox.warning(self, "Ошибка", "Поля должны быть заполнены!")
@@ -210,7 +208,8 @@ class MainWindow(QMainWindow):
         table_mapping = {
         'Авторы': self.ui.tableAuthors,
         'Журналы': self.ui.tableJournals,
-        'Темы': self.ui.tableTopics
+        'Темы': self.ui.tableTopics,
+        'Статьи': self.ui.tableArticles
             }
         if tableName not in table_mapping:
             QMessageBox.warning(self, "Ошибка", "Неизвестный тип записи")
@@ -259,6 +258,7 @@ class MainWindow(QMainWindow):
             items += item
 
         self.ui.topicArticles.addItems(items)
+        self.ui.comboBox.addItems(items)
         
 
 

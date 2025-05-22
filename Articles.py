@@ -242,7 +242,7 @@ class Ui_MainWindow(object):
 
         self.dataArticles = QDateEdit(self.layoutWidget)
         self.dataArticles.setObjectName(u"dataArticles")
-        self.dataArticles.setMaximumDateTime(QDateTime(QDate(9999, 12, 28), QTime(11, 59, 59)))
+        self.dataArticles.setMaximumDateTime(QDateTime(QDate(9999, 12, 27), QTime(15, 59, 59)))
         self.dataArticles.setDate(QDate(2025, 6, 17))
 
         self.gridLayout_3.addWidget(self.dataArticles, 3, 2, 1, 3)
@@ -327,7 +327,7 @@ class Ui_MainWindow(object):
 
         self.dataJournal = QDateEdit(self.layoutWidget1)
         self.dataJournal.setObjectName(u"dataJournal")
-        self.dataJournal.setMaximumDateTime(QDateTime(QDate(9999, 12, 28), QTime(6, 59, 59)))
+        self.dataJournal.setMaximumDateTime(QDateTime(QDate(9999, 12, 27), QTime(10, 59, 59)))
         self.dataJournal.setDate(QDate(2025, 6, 17))
 
         self.gridLayout_2.addWidget(self.dataJournal, 3, 1, 1, 4)
@@ -403,11 +403,6 @@ class Ui_MainWindow(object):
 
         self.gridLayout.addWidget(self.label_19, 2, 0, 1, 2)
 
-        self.childeTopic = QLineEdit(self.layoutWidget3)
-        self.childeTopic.setObjectName(u"childeTopic")
-
-        self.gridLayout.addWidget(self.childeTopic, 1, 2, 1, 1)
-
         self.label_10 = QLabel(self.layoutWidget3)
         self.label_10.setObjectName(u"label_10")
         self.label_10.setMidLineWidth(0)
@@ -428,6 +423,12 @@ class Ui_MainWindow(object):
         self.descriptionTopic.setObjectName(u"descriptionTopic")
 
         self.gridLayout.addWidget(self.descriptionTopic, 2, 2, 1, 1)
+
+        self.comboBox = QComboBox(self.layoutWidget3)
+        self.comboBox.addItem("")
+        self.comboBox.setObjectName(u"comboBox")
+
+        self.gridLayout.addWidget(self.comboBox, 1, 2, 1, 1)
 
         self.tabWidget.addTab(self.tab_3, "")
         MainWindow.setCentralWidget(self.centralwidget)
@@ -492,13 +493,13 @@ class Ui_MainWindow(object):
         self.label_4.setText(QCoreApplication.translate("MainWindow", u"\u0414\u0430\u0442\u0430 \u043f\u0443\u0431\u043b\u0438\u043a\u0430\u0446\u0438\u0438", None))
         self.label_8.setText(QCoreApplication.translate("MainWindow", u"\u041e\u0433\u043b\u0430\u0432\u043b\u0435\u043d\u0438\u0435", None))
         self.label_7.setText(QCoreApplication.translate("MainWindow", u"\u041a\u043e\u043b\u0438\u0447\u0435\u0441\u0442\u0432\u043e \u0441\u0442\u0440\u0430\u043d\u0438\u0446", None))
-        self.label_2.setText(QCoreApplication.translate("MainWindow", u"* \u041d\u0430\u0437\u0432\u0430\u043d\u0438\u0435", None))
+        self.label_2.setText(QCoreApplication.translate("MainWindow", u"\u041d\u0430\u0437\u0432\u0430\u043d\u0438\u0435", None))
         self.label_23.setText(QCoreApplication.translate("MainWindow", u"\u0410\u0432\u0442\u043e\u0440", None))
         self.label_6.setText(QCoreApplication.translate("MainWindow", u"\u0422\u0435\u043c\u0430", None))
         self.label_24.setText(QCoreApplication.translate("MainWindow", u"\u0421\u0441\u044b\u043b\u043a\u0430", None))
         self.tabWidget.setTabText(self.tabWidget.indexOf(self.tab), QCoreApplication.translate("MainWindow", u"\u0421\u0442\u0430\u0442\u044c\u044f", None))
         self.addJournal.setText(QCoreApplication.translate("MainWindow", u"\u0414\u043e\u0431\u0430\u0432\u0438\u0442\u044c \u0436\u0443\u0440\u043d\u0430\u043b", None))
-        self.label_12.setText(QCoreApplication.translate("MainWindow", u"* \u041d\u0430\u0437\u0432\u0430\u043d\u0438\u0435", None))
+        self.label_12.setText(QCoreApplication.translate("MainWindow", u"\u041d\u0430\u0437\u0432\u0430\u043d\u0438\u0435", None))
         self.label_13.setText(QCoreApplication.translate("MainWindow", u"\u0418\u0434\u0435\u043d\u0442\u0438\u0444\u0438\u043a\u0430\u0442\u043e\u0440", None))
         self.label_14.setText(QCoreApplication.translate("MainWindow", u"\u041e\u0440\u0433\u0430\u043d\u0438\u0437\u0430\u0446\u0438\u044f", None))
         self.label_15.setText(QCoreApplication.translate("MainWindow", u"\u0414\u0430\u0442\u0430 \u043e\u0441\u043d\u043e\u0432\u0430\u043d\u0438\u044f", None))
@@ -512,7 +513,9 @@ class Ui_MainWindow(object):
         self.addTopic.setText(QCoreApplication.translate("MainWindow", u"\u0414\u043e\u0431\u0430\u0432\u0438\u0442\u044c \u0442\u0435\u043c\u0443", None))
         self.label_19.setText(QCoreApplication.translate("MainWindow", u"\u041e\u043f\u0438\u0441\u0430\u043d\u0438\u0435", None))
         self.label_10.setText(QCoreApplication.translate("MainWindow", u"\u0422\u0435\u043c\u0430", None))
-        self.label_18.setText(QCoreApplication.translate("MainWindow", u"\u041f\u043e\u0434\u0442\u0435\u043c\u0430", None))
+        self.label_18.setText(QCoreApplication.translate("MainWindow", u"\u0413\u043b\u0430\u0432\u043d\u0430\u044f \u0442\u0435\u043c\u0430", None))
+        self.comboBox.setItemText(0, "")
+
         self.tabWidget.setTabText(self.tabWidget.indexOf(self.tab_3), QCoreApplication.translate("MainWindow", u"\u0422\u0435\u043c\u0430", None))
     # retranslateUi
 
