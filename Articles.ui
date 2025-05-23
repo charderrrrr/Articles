@@ -36,7 +36,7 @@
       </rect>
      </property>
      <property name="currentIndex">
-      <number>0</number>
+      <number>3</number>
      </property>
      <widget class="QWidget" name="tab_4">
       <attribute name="title">
@@ -48,7 +48,7 @@
          <x>10</x>
          <y>520</y>
          <width>521</width>
-         <height>47</height>
+         <height>21</height>
         </rect>
        </property>
        <property name="orientation">
@@ -64,43 +64,6 @@
          </property>
         </widget>
         <widget class="QLineEdit" name="findArticles"/>
-       </widget>
-       <widget class="QComboBox" name="comboBoxArticles">
-        <item>
-         <property name="text">
-          <string>нет</string>
-         </property>
-        </item>
-        <item>
-         <property name="text">
-          <string>По названию статьи</string>
-         </property>
-        </item>
-        <item>
-         <property name="text">
-          <string>По журналу</string>
-         </property>
-        </item>
-        <item>
-         <property name="text">
-          <string>По дате</string>
-         </property>
-        </item>
-        <item>
-         <property name="text">
-          <string>По тому</string>
-         </property>
-        </item>
-        <item>
-         <property name="text">
-          <string>По теме</string>
-         </property>
-        </item>
-        <item>
-         <property name="text">
-          <string>По оглавлению</string>
-         </property>
-        </item>
        </widget>
       </widget>
       <widget class="QPushButton" name="delArticles">
@@ -163,7 +126,7 @@
          <x>10</x>
          <y>520</y>
          <width>521</width>
-         <height>47</height>
+         <height>21</height>
         </rect>
        </property>
        <property name="orientation">
@@ -179,23 +142,6 @@
          </property>
         </widget>
         <widget class="QLineEdit" name="findAuthors"/>
-       </widget>
-       <widget class="QComboBox" name="comboBoxAuthors">
-        <item>
-         <property name="text">
-          <string>нет</string>
-         </property>
-        </item>
-        <item>
-         <property name="text">
-          <string>По автору</string>
-         </property>
-        </item>
-        <item>
-         <property name="text">
-          <string>По сфере</string>
-         </property>
-        </item>
        </widget>
       </widget>
       <widget class="QPushButton" name="editAuthors">
@@ -258,7 +204,7 @@
          <x>10</x>
          <y>520</y>
          <width>521</width>
-         <height>47</height>
+         <height>21</height>
         </rect>
        </property>
        <property name="orientation">
@@ -274,28 +220,6 @@
          </property>
         </widget>
         <widget class="QLineEdit" name="findArticles_2"/>
-       </widget>
-       <widget class="QComboBox" name="comboBoxArticles_2">
-        <item>
-         <property name="text">
-          <string>нет</string>
-         </property>
-        </item>
-        <item>
-         <property name="text">
-          <string>По имени</string>
-         </property>
-        </item>
-        <item>
-         <property name="text">
-          <string>По организации</string>
-         </property>
-        </item>
-        <item>
-         <property name="text">
-          <string>По email</string>
-         </property>
-        </item>
        </widget>
       </widget>
       <widget class="QTableView" name="tableAuthors">
@@ -332,7 +256,7 @@
          <x>10</x>
          <y>520</y>
          <width>521</width>
-         <height>47</height>
+         <height>21</height>
         </rect>
        </property>
        <property name="orientation">
@@ -348,23 +272,6 @@
          </property>
         </widget>
         <widget class="QLineEdit" name="findTopic"/>
-       </widget>
-       <widget class="QComboBox" name="comboBoxTopic">
-        <item>
-         <property name="text">
-          <string>нет</string>
-         </property>
-        </item>
-        <item>
-         <property name="text">
-          <string>По названию</string>
-         </property>
-        </item>
-        <item>
-         <property name="text">
-          <string>По описанию</string>
-         </property>
-        </item>
        </widget>
       </widget>
       <widget class="QPushButton" name="delTopic">
@@ -524,7 +431,7 @@
          <widget class="QDateEdit" name="dataArticles">
           <property name="maximumDateTime">
            <datetime>
-            <hour>15</hour>
+            <hour>10</hour>
             <minute>59</minute>
             <second>59</second>
             <year>9999</year>
@@ -653,7 +560,7 @@
          <widget class="QDateEdit" name="dataJournal">
           <property name="maximumDateTime">
            <datetime>
-            <hour>10</hour>
+            <hour>5</hour>
             <minute>59</minute>
             <second>59</second>
             <year>9999</year>
@@ -834,7 +741,7 @@
          <widget class="QComboBox" name="comboBox">
           <item>
            <property name="text">
-            <string> </string>
+            <string/>
            </property>
           </item>
          </widget>

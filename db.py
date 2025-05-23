@@ -60,25 +60,25 @@ class DatabaseHandler:
     
     def addRecord(self, name_table, data):
         if len(data) != 0:
-            if name_table == "authors":
+            if name_table == "Авторы":
                 self.cursor.execute("""
                 INSERT INTO authors(full_name, affiliation, email)
                 VALUES (?, ?, ?);
             """, tuple(data))
 
-            if name_table == "journals":
+            if name_table == "Журналы":
                 self.cursor.execute("""
                 INSERT INTO journals(journal_name, issn, publisher, founding_year, frequency)
                 VALUES (?, ?, ?, ?, ?);
             """, tuple(data))
 
-            if name_table == "topics":
+            if name_table == "Темы":
                 self.cursor.execute("""
                 INSERT INTO topics(topic_name, parent_topic, description)
                 VALUES (?, ?, ?);
             """, tuple(data))
 
-            if name_table == "articles":
+            if name_table == "Статьи":
                 self.cursor.execute("""
                 INSERT INTO articles(title, author_id, journal_id, publication_date, volume, issue, pages, abstract, link)
                 VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?);
@@ -87,47 +87,47 @@ class DatabaseHandler:
             return self.connect.commit()
         
     def load_data(self, name_table):
-        if name_table == "authors":
+        if name_table == "Авторы":
             self.cursor.execute("""
-            SELECT * FROM authors
+            SELECT * FROM Авторы
             """)
             return self.cursor.fetchall()
 
-        if name_table == "journals":
+        if name_table == "Журналы":
             self.cursor.execute("""
             SELECT * FROM journals
         """)
             return self.cursor.fetchall()
 
-        if name_table == "topics":
+        if name_table == "Темы":
             self.cursor.execute("""
             SELECT * FROM topics
         """)
             return self.cursor.fetchall()
 
-        if name_table == "articles":
+        if name_table == "Статьи":
             self.cursor.execute("""
             SELECT * FROM articles
         """)
             return self.cursor.fetchall()
         
     def load_headers(self, name_table):   
-        if name_table == "authors":
+        if name_table == "Авторы":
             self.cursor.execute("PRAGMA table_info(authors)")
             columns_dict = {idx: column[1] for idx, column in enumerate(self.cursor.fetchall())}
             return columns_dict
 
-        if name_table == "journals":
+        if name_table == "Журналы":
             self.cursor.execute("PRAGMA table_info(journals)")
             columns_dict = {idx: column[1] for idx, column in enumerate(self.cursor.fetchall())}
             return columns_dict
 
-        if name_table == "topics":
+        if name_table == "Темы":
             self.cursor.execute("PRAGMA table_info(topics)")
             columns_dict = {idx: column[1] for idx, column in enumerate(self.cursor.fetchall())}
             return columns_dict
 
-        if name_table == "articles":
+        if name_table == "Статьи":
             self.cursor.execute("PRAGMA table_info(articles)")
             columns_dict = {idx: column[1] for idx, column in enumerate(self.cursor.fetchall())}
             return columns_dict
@@ -155,6 +155,55 @@ class DatabaseHandler:
             """, tuple(id))
 
             return self.connect.commit()
+        
+    def findValue(self, name_table, text):
+
+        if name_table == "Авторы":
+            self.cursor.execute("""
+            SELECT * FROM authors WHERE 
+                full_name LIKE ? OR
+                affiliation LIKE ? OR
+                email LIKE ?
+            """, (text, text, text))
+            return self.cursor.fetchall()
+    
+        if name_table == "Журналы":
+            self.cursor.execute("""
+            SELECT * FROM journals WHERE 
+                journal_name LIKE ? OR
+                issn LIKE ? OR
+                publisher LIKE ? OR
+                founding_year LIKE ? OR
+                frequency LIKE ?
+            """, (text, text, text, text, text))
+            return self.cursor.fetchall()
+
+        if name_table == "Темы":
+            self.cursor.execute("""
+            SELECT * FROM topics WHERE 
+                topic_name LIKE ? OR
+                parent_topic LIKE ? OR
+                description LIKE ?
+            """, (text, text, text))
+            return self.cursor.fetchall()
+
+        if name_table == "Статьи":
+            self.cursor.execute("""
+            SELECT * FROM articles WHERE 
+                title LIKE ? OR
+                author_id LIKE ? OR
+                journal_id LIKE ? OR
+                publication_date LIKE ? OR
+                volume LIKE ? OR
+                issue LIKE ? OR
+                pages LIKE ? OR
+                abstract LIKE ? OR
+                link LIKE ?
+            """, (text, text, text, text, text, text, text, text, text))
+            return self.cursor.fetchall()
+    
+
+        
 
     def getAuthors(self):
         self.cursor.execute(""" 

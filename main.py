@@ -86,39 +86,44 @@ class MainWindow(QMainWindow):
         self.ui.delTopic.clicked.connect(self.del_record)
         self.ui.delArticles.clicked.connect(self.del_record)
 
+        self.ui.findArticles.textChanged.connect(self.find_Value)
+        self.ui.findAuthors.textChanged.connect(self.find_Value)
+        self.ui.findArticles_2.textChanged.connect(self.find_Value)
+        self.ui.findTopic.textChanged.connect(self.find_Value)
+
     def loadData(self):
         current_text = self.ui.tabWidget_2.tabText(self.ui.tabWidget_2.currentIndex())
 
         if current_text == "Статьи":            
-            items = self.db_handler.load_data(f"articles")
-            headers = self.db_handler.load_headers(f"articles")
+            items = self.db_handler.load_data(current_text)
+            headers = self.db_handler.load_headers(current_text)
             self.atriclesModel.setItems(items)
             self.atriclesModel.setName(headers)
             self.ui.tableArticles.setColumnHidden(0, True) 
 
         if current_text == "Журналы":
-            items = self.db_handler.load_data(f"journals")
-            headers = self.db_handler.load_headers(f"journals")
+            items = self.db_handler.load_data(current_text)
+            headers = self.db_handler.load_headers(current_text)
             self.journalModel.setItems(items)
             self.journalModel.setName(headers)
             self.ui.tableJournals.setColumnHidden(0, True)
 
         if current_text == "Авторы":
-            items = self.db_handler.load_data(f"authors")
-            headers = self.db_handler.load_headers(f"authors")
+            items = self.db_handler.load_data(current_text)
+            headers = self.db_handler.load_headers(current_text)
             self.authorModel.setItems(items)
             self.authorModel.setName(headers)
             self.ui.tableAuthors.setColumnHidden(0, True)
 
         if current_text == "Темы": 
-            items = self.db_handler.load_data(f"topics")
-            headers = self.db_handler.load_headers(f"topics")
+            items = self.db_handler.load_data(current_text)
+            headers = self.db_handler.load_headers(current_text)
             self.topicModel.setItems(items)
             self.topicModel.setName(headers)
             self.ui.tableTopics.setColumnHidden(0, True)
 
     def add_articles(self):
-        tableName = "articles"
+        tableName = "Статьи"
         name = self.ui.nameArticle.text().strip()
         author = self.ui.articlesAuthor.currentText()
         journal = self.ui.ArticlesJournal.currentText()
@@ -132,7 +137,6 @@ class MainWindow(QMainWindow):
             try:
                 self.db_handler.addRecord(tableName, (name, author, journal, date, volume, theme, pages, abstract, link))
                 self.ui.nameArticle.clear()
-                self.ui.dataArticles.clear()
                 self.ui.volume.clear()
                 self.ui.pagesArticles.clear()
                 self.ui.abstract_2.clear()
@@ -144,7 +148,7 @@ class MainWindow(QMainWindow):
 
 
     def add_journals(self):
-        tableName = "journals"
+        tableName = "Журналы"
         name = self.ui.nameJournal.text().strip()        
         issn = self.ui.issnJournal.text().strip()
         publisher = self.ui.publisher.text().strip()
@@ -156,7 +160,6 @@ class MainWindow(QMainWindow):
                 self.ui.nameJournal.clear()
                 self.ui.issnJournal.clear()
                 self.ui.publisher.clear()
-                self.ui.dataJournal.clear()
                 self.ui.period.clear()
                 self.loadData()
                 self.load_journals()
@@ -166,7 +169,7 @@ class MainWindow(QMainWindow):
 
 
     def add_author(self):
-        tableName = "authors"
+        tableName = "Авторы"
         full_name = self.ui.FIO.text().strip()        
         affiliationn = self.ui.affiliation.text().strip()
         emaill = self.ui.email.text().strip()
@@ -183,7 +186,7 @@ class MainWindow(QMainWindow):
 
 
     def add_topics(self):
-        tableName = "topics"
+        tableName = "Темы"
         name = self.ui.nameTopic.text().strip()
         childeName = self.ui.comboBox.currentText().strip()
         description = self.ui.descriptionTopic.toPlainText().strip()
@@ -236,7 +239,41 @@ class MainWindow(QMainWindow):
                 QMessageBox.information(self, "Успех", "Запись успешно удалена")
             except Exception as e:
                     QMessageBox.warning(self, "Ошибка", f"{e}")
-      
+
+    def find_Value(self, currentText):
+        tableName = self.ui.tabWidget_2.tabText(self.ui.tabWidget_2.currentIndex())
+        tablesmodel = {'Авторы': self.authorModel,
+                  'Темы': self.topicModel,
+                  'Журналы': self.journalModel,
+                  'Статьи': self.atriclesModel}
+        
+        tables = {'Авторы': self.ui.tableAuthors,
+                  'Темы': self.ui.tableTopics,
+                  'Журналы': self.ui.tableJournals,
+                  'Статьи': self.ui.tableArticles}
+        
+        if tableName not in tables:
+            QMessageBox.warning(self, "Ошибка", "Неизвестный тип записи")
+            return
+        
+        model = tablesmodel[tableName]
+        table = tables[tableName]
+        text = "%" + currentText + "%"
+
+        if not currentText:
+            self.loadData()
+
+        try:
+            
+            items = self.db_handler.findValue(tableName, text)
+            headers = self.db_handler.load_headers(tableName)
+            model.setItems(items)
+            model.setName(headers)
+            table.setColumnHidden(0, True)
+        except Exception as e:
+            QMessageBox.warning(self, "Ошибка", f"{e}")
+            
+
     def load_authors(self):
         authors = self.db_handler.getAuthors()
         items = []
