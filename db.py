@@ -89,7 +89,7 @@ class DatabaseHandler:
     def load_data(self, name_table):
         if name_table == "Авторы":
             self.cursor.execute("""
-            SELECT * FROM Авторы
+            SELECT * FROM authors
             """)
             return self.cursor.fetchall()
 
@@ -160,7 +160,7 @@ class DatabaseHandler:
 
         if name_table == "Авторы":
             self.cursor.execute("""
-            SELECT * FROM authors WHERE 
+            SELECT * FROM authors WHERE
                 full_name LIKE ? OR
                 affiliation LIKE ? OR
                 email LIKE ?
@@ -201,24 +201,69 @@ class DatabaseHandler:
                 link LIKE ?
             """, (text, text, text, text, text, text, text, text, text))
             return self.cursor.fetchall()
-    
-
         
+    def findID(self, name_table, id):
+        if name_table == "Авторы":
+            self.cursor.execute("""
+            SELECT * FROM authors WHERE author_id=?
+            """, id)
+            return self.cursor.fetchall()
+    
+        if name_table == "Журналы":
+            self.cursor.execute("""
+            SELECT * FROM journals WHERE journal_id=? 
+            """, id)
+            return self.cursor.fetchall()
+
+        if name_table == "Темы":
+            self.cursor.execute("""
+            SELECT * FROM topics WHERE topic_id=?
+            """, id)
+            return self.cursor.fetchall()
+
+        if name_table == "Статьи":
+            self.cursor.execute("""
+            SELECT * FROM articles WHERE article_id=?
+            """, id)
+            return self.cursor.fetchall()
+    
+    def updateValue(self, name_table, data):
+        if name_table == "Авторы":
+            self.cursor.execute("""
+            UPDATE authors SET full_name=?, affiliation=?, email=? WHERE author_id=?
+            """, tuple(data))
+
+        if name_table == "Журналы":
+            self.cursor.execute("""
+            UPDATE journals SET journal_name=?, issn=?, publisher=?, founding_year=?, frequency=? WHERE journal_id=?
+            """, tuple(data))
+
+        if name_table == "Темы":
+            self.cursor.execute("""
+            UPDATE topics SET topic_name=?, parent_topic=?, description=? WHERE topic_id=?
+            """, tuple(data))
+
+        if name_table == "Статьи":
+            self.cursor.execute("""
+            UPDATE articles SET title=?, author_id=?, journal_id=?, publication_date=?, volume=?, issue=?, pages=?, abstract=?, link=? WHERE article_id=?
+            """, tuple(data))
+        
+        return self.connect.commit()
 
     def getAuthors(self):
         self.cursor.execute(""" 
-        SELECT full_name FROM authors
+        SELECT DISTINCT full_name FROM authors
         """)
         return self.cursor.fetchall()
     
     def getJournals(self):
         self.cursor.execute(""" 
-        SELECT journal_name FROM journals
+        SELECT DISTINCT journal_name FROM journals
         """)
         return self.cursor.fetchall()
     
     def getTopic(self):
         self.cursor.execute(""" 
-        SELECT topic_name FROM topics
+        SELECT DISTINCT topic_name FROM topics
         """)
         return self.cursor.fetchall()
