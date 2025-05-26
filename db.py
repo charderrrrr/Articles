@@ -13,7 +13,7 @@ class DatabaseHandler:
     def init_db(self):        
         self.cursor.execute("""
             CREATE TABLE IF NOT EXISTS authors (
-            author_id INTEGER PRIMARY KEY AUTOINCREMENT,
+            author INTEGER PRIMARY KEY AUTOINCREMENT,
             full_name TEXT NOT NULL UNIQUE,
             affiliation VARCHAR(100),
             email VARCHAR(100)
@@ -22,7 +22,7 @@ class DatabaseHandler:
 
         self.cursor.execute("""
             CREATE TABLE IF NOT EXISTS journals (
-            journal_id INTEGER PRIMARY KEY AUTOINCREMENT,
+            journal INTEGER PRIMARY KEY AUTOINCREMENT,
             journal_name TEXT NOT NULL UNIQUE,
             issn VARCHAR(9) UNIQUE,
             publisher TEXT,
@@ -44,11 +44,11 @@ class DatabaseHandler:
             CREATE TABLE IF NOT EXISTS articles (
             article_id INTEGER PRIMARY KEY AUTOINCREMENT,
             title VARCHAR(200) NOT NULL,
-            author_id TEXT,
-            journal_id TEXT,
+            author TEXT,
+            journal TEXT,
             publication_date DATE,
             volume VARCHAR(20),
-            issue VARCHAR(20),
+            issue VARCHAR(100),
             pages INTEGER,
             abstract TEXT,
             link TEXT
@@ -80,7 +80,7 @@ class DatabaseHandler:
 
             if name_table == "Статьи":
                 self.cursor.execute("""
-                INSERT INTO articles(title, author_id, journal_id, publication_date, volume, issue, pages, abstract, link)
+                INSERT INTO articles(title, author, journal, publication_date, volume, issue, pages, abstract, link)
                 VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?);
             """, tuple(data))
 
@@ -136,12 +136,12 @@ class DatabaseHandler:
         if len(id) != 0:
             if name_table == "Авторы":
                 self.cursor.execute("""
-                DELETE FROM authors WHERE author_id=?
+                DELETE FROM authors WHERE author=?
             """, tuple(id))
 
             if name_table == "Журналы":
                 self.cursor.execute("""
-                DELETE FROM journals WHERE journal_id=?
+                DELETE FROM journals WHERE journal=?
             """, tuple(id))
 
             if name_table == "Темы":
@@ -191,8 +191,8 @@ class DatabaseHandler:
             self.cursor.execute("""
             SELECT * FROM articles WHERE 
                 title LIKE ? OR
-                author_id LIKE ? OR
-                journal_id LIKE ? OR
+                author LIKE ? OR
+                journal LIKE ? OR
                 publication_date LIKE ? OR
                 volume LIKE ? OR
                 issue LIKE ? OR
@@ -205,13 +205,13 @@ class DatabaseHandler:
     def findID(self, name_table, id):
         if name_table == "Авторы":
             self.cursor.execute("""
-            SELECT * FROM authors WHERE author_id=?
+            SELECT * FROM authors WHERE author=?
             """, id)
             return self.cursor.fetchall()
     
         if name_table == "Журналы":
             self.cursor.execute("""
-            SELECT * FROM journals WHERE journal_id=? 
+            SELECT * FROM journals WHERE journal=? 
             """, id)
             return self.cursor.fetchall()
 
@@ -230,12 +230,12 @@ class DatabaseHandler:
     def updateValue(self, name_table, data):
         if name_table == "Авторы":
             self.cursor.execute("""
-            UPDATE authors SET full_name=?, affiliation=?, email=? WHERE author_id=?
+            UPDATE authors SET full_name=?, affiliation=?, email=? WHERE author=?
             """, tuple(data))
 
         if name_table == "Журналы":
             self.cursor.execute("""
-            UPDATE journals SET journal_name=?, issn=?, publisher=?, founding_year=?, frequency=? WHERE journal_id=?
+            UPDATE journals SET journal_name=?, issn=?, publisher=?, founding_year=?, frequency=? WHERE journal=?
             """, tuple(data))
 
         if name_table == "Темы":
@@ -245,7 +245,7 @@ class DatabaseHandler:
 
         if name_table == "Статьи":
             self.cursor.execute("""
-            UPDATE articles SET title=?, author_id=?, journal_id=?, publication_date=?, volume=?, issue=?, pages=?, abstract=?, link=? WHERE article_id=?
+            UPDATE articles SET title=?, author=?, journal=?, publication_date=?, volume=?, issue=?, pages=?, abstract=?, link=? WHERE article_id=?
             """, tuple(data))
         
         return self.connect.commit()

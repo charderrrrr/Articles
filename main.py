@@ -1,6 +1,6 @@
 from PySide6.QtWidgets import QApplication, QMainWindow, QTableWidgetItem, QMessageBox
 from PySide6 import QtCore
-from Articles import Ui_MainWindow 
+from Articles import Ui_Articles 
 from db import DatabaseHandler
 from PySide6.QtCore import QDate
 
@@ -52,7 +52,7 @@ class MainWindow(QMainWindow):
     def __init__(self):
         super().__init__()
         self.db_handler = DatabaseHandler()
-        self.ui = Ui_MainWindow()  
+        self.ui = Ui_Articles()  
         self.ui.setupUi(self)
         
         #Модели
@@ -170,6 +170,7 @@ class MainWindow(QMainWindow):
         items = []
         for item in authors:
             items += item
+        self.ui.articlesAuthor.clear()
         self.ui.articlesAuthor.addItems(items)
         
     def load_journals(self):
@@ -177,6 +178,7 @@ class MainWindow(QMainWindow):
         items = []
         for item in journals:
             items += item 
+        self.ui.ArticlesJournal.clear()
         self.ui.ArticlesJournal.addItems(items)
 
     def load_topics(self):
@@ -184,6 +186,8 @@ class MainWindow(QMainWindow):
         items = []
         for item in topics:
             items += item
+        self.ui.topicArticles.clear()
+        self.ui.parentTopic.clear()
         self.ui.topicArticles.addItems(items)
         self.ui.parentTopic.addItems(items)
     
@@ -317,10 +321,10 @@ class MainWindow(QMainWindow):
                     self.ui.addAuthors.setEnabled(True)
                     self.ui.authorsWarning.setText(" ")
                 except Exception as e:
-                    self.ui.authorsWarning.setText(f"Проверьте данные!\nНазвание организации должно быть меньше 100 симв(у вас: {len(affiliationn)}\nПочта должна быть меньше 100 симв(у вас: {len(emaill)})\nИмя автора не должно повторяться")
+                    self.ui.authorsWarning.setText(f"Проверьте данные!\nНазвание организации должно быть меньше 100 симв\n(у вас: {len(affiliationn)})\nПочта должна быть меньше 100 симв(у вас: {len(emaill)})\nИмя автора не должно повторяться")
                     self.ui.authorsWarning.setStyleSheet("color: red;")
             else:
-                self.ui.authorsWarning.setText(f"Проверьте данные!\nНазвание организации должно быть меньше 100 симв(у вас: {len(affiliationn)}\nПочта должна быть меньше 100 симв(у вас: {len(emaill)})\nИмя автора не должно повторяться")
+                self.ui.authorsWarning.setText(f"Проверьте данные!\nНазвание организации должно быть меньше 100 симв\n(у вас: {len(affiliationn)})\nПочта должна быть меньше 100 симв(у вас: {len(emaill)})\nИмя автора не должно повторяться")
                 self.ui.authorsWarning.setStyleSheet("color: red;")
         else:
             QMessageBox.warning(self, "Ошибка", "Поля должны быть заполнены!")
@@ -369,7 +373,7 @@ class MainWindow(QMainWindow):
         cell_index = row.sibling(row.row(), 0)
         id = cell_index.data()
 
-        reply = QMessageBox.question(self, "Подтверждение удаления", f"Вы действительно хотите удалить запись с ID {id}?",
+        reply = QMessageBox.question(self, "Подтверждение удаления", f"Вы действительно хотите удалить запись?",
         QMessageBox.Yes | QMessageBox.No)
     
         if reply == QMessageBox.No:
@@ -380,7 +384,7 @@ class MainWindow(QMainWindow):
                 self.loadData()
                 QMessageBox.information(self, "Успех", "Запись успешно удалена")
             except Exception as e:
-                    QMessageBox.warning(self, "Ошибка", f"{e}")
+                    QMessageBox.warning(self, "Ошибка", f"Попробуйте снова. {e}")
 
     def find_Value(self, currentText):
         tableName = self.ui.tabWidget_2.tabText(self.ui.tabWidget_2.currentIndex())
@@ -412,7 +416,7 @@ class MainWindow(QMainWindow):
             model.setName(headers)
             table.setColumnHidden(0, True)
         except Exception as e:
-            QMessageBox.warning(self, "Ошибка", f"{e}")    
+            QMessageBox.warning(self, "Ошибка", f"Попробуйте снова. {e}")    
             
     def update(self):
         info = self.currentElement()
@@ -453,7 +457,7 @@ class MainWindow(QMainWindow):
                 self.ui.addArticles.setEnabled(False)
                 self.ui.completeArticles.setEnabled(True)
         except Exception as e:
-            QMessageBox.warning(self, "Ошибка", f"{e}")
+            QMessageBox.warning(self, "Ошибка", f"Попробуйте снова. {e}")
 
     def update_articles(self):
         info = self.currentElement()
@@ -504,6 +508,7 @@ class MainWindow(QMainWindow):
                     self.load_journals()
                     self.ui.completeJournal.setEnabled(False)
                     self.ui.addJournal.setEnabled(True)
+                    self.ui.journalWarning.setText(" ")
                 except Exception as e:
                     self.ui.journalWarning.setText(f"Проверьте данные!\nИндентификатор должен содержать 9 симв.(у вас: {len(issn)})\nПереодичность должна быть меньше 30 симв.(у вас: {len(period)})\nНазвание и идентификатор не должны повторяться{e}")
                     self.ui.journalWarning.setStyleSheet("color: red;")
@@ -556,10 +561,10 @@ class MainWindow(QMainWindow):
                     self.ui.completeAuthors.setEnabled(False)
                     self.ui.addAuthors.setEnabled(True)
                 except Exception as e:
-                    self.ui.authorsWarning.setText(f"Проверьте данные!\nНазвание организации должно быть меньше 100 симв(у вас: {len(affiliationn)}\nПочта должна быть меньше 100 симв(у вас: {len(emaill)})\nИмя автора не должно повторяться")
+                    self.ui.authorsWarning.setText(f"Проверьте данные!\nНазвание организации должно быть меньше 100 симв\n(у вас: {len(affiliationn)}\nПочта должна быть меньше 100 симв(у вас: {len(emaill)})\nИмя автора не должно повторяться")
                     self.ui.authorsWarning.setStyleSheet("color: red;")
             else:
-                self.ui.authorsWarning.setText(f"Проверьте данные!\nНазвание организации должно быть меньше 100 симв(у вас: {len(affiliationn)}\nПочта должна быть меньше 100 симв(у вас: {len(emaill)})\nИмя автора не должно повторяться")
+                self.ui.authorsWarning.setText(f"Проверьте данные!\nНазвание организации должно быть меньше 100 симв\n(у вас: {len(affiliationn)}\nПочта должна быть меньше 100 симв(у вас: {len(emaill)})\nИмя автора не должно повторяться")
                 self.ui.authorsWarning.setStyleSheet("color: red;")
         else:
             QMessageBox.warning(self, "Ошибка", "Поля должны быть заполнены!")
